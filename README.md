@@ -1,3 +1,9 @@
+## ✅ Tests
+
+```bash
+![Tests](https://github.com/mikedevpro/budget_audit_cli/actions/workflows/tests.yml/badge.svg)
+```
+
 # budget-audit-cli
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
@@ -111,8 +117,8 @@ Run directly from source without installing entrypoints:
 PYTHONPATH=src python3 -m budget_audit --db budget.db summary
 ```
 
-## ✅ Tests
 
+<<<<<<< HEAD
 ```bash
 pytest -q
 ```
@@ -122,3 +128,5 @@ pytest -q
 - 80% minimum test coverage enforced in CI
 - Multi-version Python testing (3.11–3.13)
 - Ruff linting and formatting via pre-commit
+=======
+>>>>>>> c3d5f3bedefadfa8e4b350d1fff5f1252b4cbd09
