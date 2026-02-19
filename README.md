@@ -1,3 +1,9 @@
+## ✅ Tests
+
+```bash
+![Tests](https://github.com/mikedevpro/budget_audit_cli/actions/workflows/tests.yml/badge.svg)
+```
+
 # budget-audit-cli
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
@@ -111,8 +117,4 @@ Run directly from source without installing entrypoints:
 PYTHONPATH=src python3 -m budget_audit --db budget.db summary
 ```
 
-## ✅ Tests
 
-```bash
-pytest -q
-```
