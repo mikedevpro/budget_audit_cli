@@ -1,8 +1,9 @@
 from __future__ import annotations
+
 import sqlite3
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Iterable, Optional
+
 
 @dataclass(frozen=True)
 class Expense:
@@ -12,11 +13,13 @@ class Expense:
     category: str
     created_at: datetime
 
+
 def _parse_dt(value: str) -> datetime:
     # your API uses ISO-like strings; SQLite might store as text
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
-def fetch_expenses(db_path: str, days: Optional[int] = None) -> list[Expense]:
+
+def fetch_expenses(db_path: str, days: int | None = None) -> list[Expense]:
     con = sqlite3.connect(db_path)
     con.row_factory = sqlite3.Row
     cur = con.cursor()
@@ -29,12 +32,15 @@ def fetch_expenses(db_path: str, days: Optional[int] = None) -> list[Expense]:
         """)
     else:
         # SQLite: compare as datetime string; works fine with ISO text
-        cur.execute("""
+        cur.execute(
+            """
             SELECT id, name, amount, category, created_at
             FROM expenses
             WHERE datetime(created_at) >= datetime('now', ?)
             ORDER BY created_at DESC
-        """, (f"-{int(days)} days",))
+        """,
+            (f"-{int(days)} days",),
+        )
 
     rows = cur.fetchall()
     con.close()

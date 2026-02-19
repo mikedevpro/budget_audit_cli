@@ -1,7 +1,8 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
-from budget_audit.reports import make_summary, by_category, over_time_daily, audit
 from budget_audit.db import Expense
+from budget_audit.reports import audit, by_category, make_summary, over_time_daily
+
 
 def exp(id, name, amount, category, iso_dt):
     return Expense(
@@ -9,8 +10,9 @@ def exp(id, name, amount, category, iso_dt):
         name=name,
         amount=float(amount),
         category=category,
-        created_at=datetime.fromisoformat(iso_dt).replace(tzinfo=timezone.utc),
+        created_at=datetime.fromisoformat(iso_dt).replace(tzinfo=UTC),
     )
+
 
 def test_make_summary_empty():
     s = make_summary([])
@@ -19,6 +21,7 @@ def test_make_summary_empty():
     assert s.avg == 0.0
     assert s.start == "—"
     assert s.end == "—"
+
 
 def test_make_summary_non_empty():
     items = [
@@ -31,6 +34,7 @@ def test_make_summary_non_empty():
     assert round(s.avg, 2) == 19.80
     assert s.start == "2026-02-01"
     assert s.end == "2026-02-02"
+
 
 def test_by_category_sums_and_sorts():
     items = [
@@ -45,6 +49,7 @@ def test_by_category_sums_and_sorts():
     assert rows[1][0] == "Food"
     assert round(rows[1][1], 2) == 16.50
 
+
 def test_over_time_daily_groups_by_date():
     items = [
         exp("1", "Coffee", 4.50, "Food", "2026-02-01T10:00:00"),
@@ -53,6 +58,7 @@ def test_over_time_daily_groups_by_date():
     ]
     rows = over_time_daily(items)
     assert rows == [("2026-02-01", 16.5), ("2026-02-02", 35.1)]
+
 
 def test_audit_large_and_duplicates():
     items = [

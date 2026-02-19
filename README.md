@@ -116,3 +116,9 @@ PYTHONPATH=src python3 -m budget_audit --db budget.db summary
 ```bash
 pytest -q
 ```
+
+## 🧪 Quality
+
+- 80% minimum test coverage enforced in CI
+- Multi-version Python testing (3.11–3.13)
+- Ruff linting and formatting via pre-commit

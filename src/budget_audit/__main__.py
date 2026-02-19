@@ -1,11 +1,14 @@
 from __future__ import annotations
+
 import argparse
 
 from .db import fetch_expenses
-from .reports import make_summary, by_category, over_time_daily, audit
+from .reports import audit, by_category, make_summary, over_time_daily
+
 
 def money(n: float) -> str:
     return f"${n:,.2f}"
+
 
 def main():
     p = argparse.ArgumentParser(prog="budget-audit", description="Budget reports + audit checks.")
@@ -55,11 +58,16 @@ def main():
 
         print(f"Large expenses (>= {money(float(args.min))}): {len(large)}")
         for x in large[:10]:
-            print(f"  - {x.created_at.date().isoformat()}  {x.name}  {money(x.amount)}  ({x.category})")
+            print(
+                f"  - {x.created_at.date().isoformat()}  {x.name}  {money(x.amount)}  ({x.category})"
+            )
 
         print(f"\nPotential duplicates: {len(dups)}")
         for a, b in dups[:10]:
-            print(f"  - {a.created_at.date().isoformat()} {a.name} {money(a.amount)} (ids {a.id}, {b.id})")
+            print(
+                f"  - {a.created_at.date().isoformat()} {a.name} {money(a.amount)} (ids {a.id}, {b.id})"
+            )
+
 
 if __name__ == "__main__":
     main()
