@@ -1,0 +1,13 @@
+[project]
+name = "budget-audit-cli"
+version = "0.1.0"
+description = "CLI reports + anomaly checks for a budget database or CSV."
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+budget-audit = "budget_audit.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
