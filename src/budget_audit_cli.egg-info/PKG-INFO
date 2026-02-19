@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: budget-audit-cli
+Version: 0.1.0
+Summary: CLI reports + anomaly checks for a budget database or CSV.
+Requires-Python: >=3.11

@@ -1,0 +1,2 @@
+[console_scripts]
+budget-audit = budget_audit.__main__:main
