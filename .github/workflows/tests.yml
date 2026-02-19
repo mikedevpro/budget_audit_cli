@@ -29,7 +29,7 @@ jobs:
           pip install -e .
           pip install pytest pytest-cov
 
-      - name: Run tests + coverage
+        - name: Run tests + coverage
         run: |
-          pytest -q --cov=budget_audit --cov-report=term-missing
+          pytest -q --cov=budget_audit --cov-report=term-missing --cov-fail-under=80
 
