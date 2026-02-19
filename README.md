@@ -110,3 +110,9 @@ Run directly from source without installing entrypoints:
 ```bash
 PYTHONPATH=src python3 -m budget_audit --db budget.db summary
 ```
+
+## ✅ Tests
+
+```bash
+pytest -q
+```
